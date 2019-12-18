@@ -104,6 +104,11 @@ public class ConfigurationKeys {
     public static final String SERVICE_SESSION_RELOAD_READ_SIZE = STORE_FILE_PREFIX + "session.reload.read_size";
 
     /**
+     * The constant CLIENT_REPORT_SUCCESS_ENABLE.
+     */
+    public static final String CLIENT_REPORT_SUCCESS_ENABLE = CLIENT_PREFIX + "report.success.enable";
+
+    /**
      * The constant CLIENT_REPORT_RETRY_COUNT.
      */
     public static final String CLIENT_REPORT_RETRY_COUNT = CLIENT_RM_PREFIX + "report.retry.count";
@@ -330,4 +335,85 @@ public class ConfigurationKeys {
      * The constant MAX_ROLLBACK_RETRY_TIMEOUT.
      */
     public static final String MAX_ROLLBACK_RETRY_TIMEOUT = SERVER_PREFIX + "max.rollback.retry.timeout";
+
+    /**
+     * The constant TRANSPORT_TYPE
+     */
+    public static final String TRANSPORT_TYPE = TRANSPORT_PREFIX + "type";
+
+    /**
+     * The constant TRANSPORT_SERVER
+     */
+    public static final String TRANSPORT_SERVER = TRANSPORT_PREFIX + "server";
+
+    /**
+     * The constant TRANSPORT_HEARTBEAT
+     */
+    public static final String TRANSPORT_HEARTBEAT = TRANSPORT_PREFIX + "heartbeat";
+
+    /**
+     * The constant THREAD_FACTORY_PREFIX
+     */
+    public static final String THREAD_FACTORY_PREFIX = TRANSPORT_PREFIX + "thread-factory.";
+
+    /**
+     * The constant BOSS_THREAD_PREFIX
+     */
+    public static final String BOSS_THREAD_PREFIX = THREAD_FACTORY_PREFIX + "boss-thread-prefix";
+
+    /**
+     * The constant WORKER_THREAD_PREFIX
+     */
+    public static final String WORKER_THREAD_PREFIX = THREAD_FACTORY_PREFIX + "worker-thread-prefix";
+
+    /**
+     * The constant SERVER_EXECUTOR_THREAD_PREFIX
+     */
+    public static final String SERVER_EXECUTOR_THREAD_PREFIX = THREAD_FACTORY_PREFIX + "server-executor-thread-prefix";
+
+    /**
+     * The constant SHARE_BOSS_WORKER
+     */
+    public static final String SHARE_BOSS_WORKER = THREAD_FACTORY_PREFIX + "share-boss-worker";
+
+    /**
+     * The constant CLIENT_SELECTOR_THREAD_PREFIX
+     */
+    public static final String CLIENT_SELECTOR_THREAD_PREFIX = THREAD_FACTORY_PREFIX + "client-selector-thread-prefix";
+
+    /**
+     * The constant CLIENT_SELECTOR_THREAD_SIZE
+     */
+    public static final String CLIENT_SELECTOR_THREAD_SIZE = THREAD_FACTORY_PREFIX + "client-selector-thread-size";
+
+    /**
+     * The constant CLIENT_WORKER_THREAD_PREFIX
+     */
+    public static final String CLIENT_WORKER_THREAD_PREFIX = THREAD_FACTORY_PREFIX + "client-worker-thread-prefix";
+
+    /**
+     * The constant BOSS_THREAD_SIZE
+     */
+    public static final String BOSS_THREAD_SIZE = THREAD_FACTORY_PREFIX + "boss-thread-size";
+
+    /**
+     * The constant WORKER_THREAD_SIZE
+     */
+    public static final String WORKER_THREAD_SIZE = THREAD_FACTORY_PREFIX + "worker-thread-size";
+
+    /**
+     * The constant SHUTDOWN_PREFIX
+     */
+    public static final String SHUTDOWN_PREFIX = TRANSPORT_PREFIX + "shutdown.";
+
+    /**
+     * The constant SHUNDOWN_WAIT
+     */
+    public static final String SHUNDOWN_WAIT = SHUTDOWN_PREFIX + "wait";
+
+
+    /**
+     * The constant DISABLE_GLOBAL_TRANSACTION.
+     */
+    public static final String DISABLE_GLOBAL_TRANSACTION = SERVICE_PREFIX + "disableGlobalTransaction";
 }

@@ -40,6 +40,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -74,7 +75,6 @@ public class EurekaRegistryServiceImpl implements RegistryService<EurekaEventLis
     private static volatile CustomEurekaInstanceConfig instanceConfig;
     private static volatile EurekaRegistryServiceImpl instance;
     private static volatile EurekaClient eurekaClient;
-
 
     private EurekaRegistryServiceImpl() {
     }
@@ -125,8 +125,7 @@ public class EurekaRegistryServiceImpl implements RegistryService<EurekaEventLis
 
     @Override
     public List<InetSocketAddress> lookup(String key) throws Exception {
-        Configuration config = ConfigurationFactory.getInstance();
-        String clusterName = config.getConfig(PREFIX_SERVICE_ROOT + CONFIG_SPLIT_CHAR + PREFIX_SERVICE_MAPPING + key);
+        String clusterName = getServiceGroup(key);
         if (null == clusterName) {
             return null;
         }
@@ -140,8 +139,7 @@ public class EurekaRegistryServiceImpl implements RegistryService<EurekaEventLis
                 }
             });
         }
-
-        return new ArrayList<>(clusterAddressMap.get(clusterName.toUpperCase()));
+        return new ArrayList<>(clusterAddressMap.getOrDefault(clusterName.toUpperCase(), Collections.emptySet()));
     }
 
     @Override
@@ -155,7 +153,7 @@ public class EurekaRegistryServiceImpl implements RegistryService<EurekaEventLis
     private void refreshCluster() {
         List<Application> applications = getEurekaClient(false).getApplications().getRegisteredApplications();
 
-        if (CollectionUtils.isEmpty(applications)){
+        if (CollectionUtils.isEmpty(applications)) {
             clusterAddressMap.clear();
 
             if (LOGGER.isDebugEnabled()) {
@@ -254,13 +252,10 @@ public class EurekaRegistryServiceImpl implements RegistryService<EurekaEventLis
     }
 
     private String getEurekaApplicationFileKey() {
-        return FILE_ROOT_REGISTRY + FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE + FILE_CONFIG_SPLIT_CHAR
-            + CLUSTER;
+        return FILE_ROOT_REGISTRY + FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE + FILE_CONFIG_SPLIT_CHAR + CLUSTER;
     }
 
     private String getEurekaInstanceWeightFileKey() {
-        return FILE_ROOT_REGISTRY + FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE + FILE_CONFIG_SPLIT_CHAR
-            + REGISTRY_WEIGHT;
+        return FILE_ROOT_REGISTRY + FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE + FILE_CONFIG_SPLIT_CHAR + REGISTRY_WEIGHT;
     }
-
 }

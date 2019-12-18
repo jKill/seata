@@ -76,11 +76,10 @@ public class DefaultServerMessageListenerImpl implements ServerMessageListener {
                 NetUtil.toIpAddress(ctx.channel().remoteAddress()), rpcContext.getTransactionServiceGroup());
         } else {
             try {
-                logQueue.put(
-                    message + ",clientIp:" + NetUtil.toIpAddress(ctx.channel().remoteAddress()) + ",vgroup:" + rpcContext
-                        .getTransactionServiceGroup());
+                logQueue.put(message + ",clientIp:" + NetUtil.toIpAddress(ctx.channel().remoteAddress()) + ",vgroup:"
+                    + rpcContext.getTransactionServiceGroup());
             } catch (InterruptedException e) {
-               LOGGER.error("put message to logQueue error: {}", e.getMessage(), e);
+                LOGGER.error("put message to logQueue error: {}", e.getMessage(), e);
             }
         }
         if (!(message instanceof AbstractMessage)) {
@@ -134,8 +133,8 @@ public class DefaultServerMessageListenerImpl implements ServerMessageListener {
                 Version.putChannelVersion(ctx.channel(), message.getVersion());
                 isSuccess = true;
                 if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info(String.format("checkAuth for client:%s vgroup:%s ok", ipAndPort,
-                        message.getTransactionServiceGroup()));
+                    LOGGER.info("checkAuth for client:{},vgroup:{},applicationId:{}",
+                            ipAndPort,message.getTransactionServiceGroup(),message.getApplicationId());
                 }
             }
         } catch (Exception exx) {
